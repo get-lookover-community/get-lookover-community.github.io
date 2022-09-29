@@ -1,0 +1,29 @@
+<h1>{{title}}</h1>
+<form>
+    <input class="testinput" id="title" type="text" placeholder="Title"><br><br>
+    <textarea class="testinput" id="content" placeholder="Title"></textarea>
+</form>
+    <br><br>
+    <a id="submit_form">Submit</a>
+    <a id="submit">Add post</a>
+
+<script>
+    let title = document.querySelector('#title'),
+        content = document.querySelector('#content'),
+        submit_form = document.querySelector('#submit_form'),
+        submit = document.querySelector('#submit');
+    
+    function makeId(length) {
+        let result = '',
+            chart = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+            chartLength = chart.length;
+            for (let i = 0; i < length; i++) {
+                result += chart.charAt(Math.floor(Math.random() * chartLength));
+            }
+            return result;
+    }
+    submit_form.addEventListener('click', () => {
+        let post_id = makeId(10);
+        window.location.pathname = `/add_articles/${post_id}/${title.value}/${content.value}`;
+    });
+</script>
